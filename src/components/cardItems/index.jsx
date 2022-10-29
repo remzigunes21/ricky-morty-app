@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import "./style.scss";
 
 function CardItems({ results }) {
   console.log("results", results)
@@ -12,7 +13,7 @@ function CardItems({ results }) {
           to={`/${item.id}`}
           className="col-lg-4 col-md-6 col-sm-6 col-12 mb-4 position-relative text-dark">
           <div className={`card d-flex flex-column justify-content-center`}>
-            <img className={`img img-fluid`} src={item.image} alt="" />
+            <img className={`img`} src={item.image} alt="" />
             <div className={`content`}>
               <div className="fs-5 fw-bold mb-4">{item.name}</div>
               <div className="">
