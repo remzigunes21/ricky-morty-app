@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { CardItems } from "../../components";
+import { CardItems, FilterItems } from "../../components";
 import SearchBar from "../../components/searchBar";
 import { BASE_URL } from "../../utils";
 import { useDebounce } from "../../utils/hook";
@@ -8,16 +8,18 @@ function Home() {
   const [searchTerm, setSearchTerm] = useState("rick");
   const [results, setResults] = useState([]);
   const [isSearching, setIsSearching] = useState(false);
+  const [status, setStatus] = useState("");
+  const [species, setSpecies] = useState("");
+  const [gender, setGender] = useState("");
 
   const debouncedSearchTerm = useDebounce(searchTerm, 500);
 
-  useEffect(()=>{
-    fetchCharactersData()
-  },[])
+  useEffect(() => {
+    fetchCharactersData();
+  }, []);
 
   useEffect(() => {
     fetchDebounceApi();
-
   }, [debouncedSearchTerm]);
 
   const fetchDebounceApi = () => {
@@ -33,8 +35,8 @@ function Home() {
     }
   };
 
-  const fetchCharactersData = (search="") => {
-    const api = `${BASE_URL}/character?name=${search}`;
+  const fetchCharactersData = (search = "") => {
+    const api = `${BASE_URL}/character?name=${search}&status=${status}&species=${species}&gender=${gender}`;
     return fetch(api)
       .then((r) => r.json())
       .then((res) => res.results)
@@ -51,20 +53,14 @@ function Home() {
       {isSearching && <div>Searching ...</div>}
       <div className="container">
         <div className="row">
-          <div className="col-lg-3 col-12 mb-5">
-            <div className="text-center fw-bold fs-4 mb-2">Filters</div>
-            <div
-              style={{ cursor: "pointer" }}
-              //onClick={clear}
-              className="text-primary text-decoration-underline text-center mb-3">
-              Clear Filters
-            </div>
-            <div className="accordion" id="accordionExample">
-              <div>Status</div>
-              <div>Species</div>
-              <div>Gender</div>
-            </div>
-          </div>
+          <FilterItems
+            status={status}
+            setStatus={setStatus}
+            setSpecies={setSpecies}
+            setGender={setGender}
+            gender={gender}
+            species={species}
+          />
           <div className="col-lg-8 col-12">
             <div className="row">
               <CardItems results={results} />
