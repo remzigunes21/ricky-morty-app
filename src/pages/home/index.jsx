@@ -1,38 +1,73 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { CardItems } from "../../components";
 import SearchBar from "../../components/searchBar";
 import { BASE_URL } from "../../utils";
+import { useDebounce } from "../../utils/hook";
 
 function Home() {
-  const [fetchedData, updateFetchedData] = useState([]);
-  const [searchText, setSearchText] = useState("");
-  const [page, setPage] = useState(1);
-  const [result, setResult] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("rick");
+  const [results, setResults] = useState([]);
+  const [isSearching, setIsSearching] = useState(false);
+
+  const debouncedSearchTerm = useDebounce(searchTerm, 500);
+
+  useEffect(()=>{
+    fetchCharactersData()
+  },[])
 
   useEffect(() => {
-    fetchCharactersData();
-  }, []);
-  const fetchCharactersData = async () => {
-    const api = `${BASE_URL}/character`;
-    await fetch(api)
-      .then((res) => res.json())
-      .then((data) => {
-        console.log("data", data);
-        setResult(data.results);
+    fetchDebounceApi();
+
+  }, [debouncedSearchTerm]);
+
+  const fetchDebounceApi = () => {
+    if (debouncedSearchTerm) {
+      setIsSearching(true);
+      fetchCharactersData(debouncedSearchTerm).then((res) => {
+        setIsSearching(false);
+        setResults(res);
+      });
+    } else {
+      setResults([]);
+      setIsSearching(false);
+    }
+  };
+
+  const fetchCharactersData = (search="") => {
+    const api = `${BASE_URL}/character?name=${search}`;
+    return fetch(api)
+      .then((r) => r.json())
+      .then((res) => res.results)
+      .catch((error) => {
+        console.error(error);
+        return [];
       });
   };
 
   return (
     <div className="App">
       <h1 className="text-center mb-3">Characters</h1>
-      <SearchBar setSearchText={setSearchText} />
+      <SearchBar setSearchTerm={setSearchTerm} />
+      {isSearching && <div>Searching ...</div>}
       <div className="container">
         <div className="row">
-          Filter
+          <div className="col-lg-3 col-12 mb-5">
+            <div className="text-center fw-bold fs-4 mb-2">Filters</div>
+            <div
+              style={{ cursor: "pointer" }}
+              //onClick={clear}
+              className="text-primary text-decoration-underline text-center mb-3">
+              Clear Filters
+            </div>
+            <div className="accordion" id="accordionExample">
+              <div>Status</div>
+              <div>Species</div>
+              <div>Gender</div>
+            </div>
+          </div>
           <div className="col-lg-8 col-12">
             <div className="row">
-              <CardItems result={result} />
+              <CardItems results={results} />
             </div>
           </div>
         </div>
