@@ -19,6 +19,15 @@ const CardItemDetail = () => {
     setDetailData(data);
   };
 
+  if (detailData.length === 0) {
+    return (
+      <div class="d-flex justify-content-center">
+        <div class="spinner-border text-warning text-center" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
+    );
+  }
   return (
     <>
       <div className="container d-flex justify-content-center mb-5">

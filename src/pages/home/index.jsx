@@ -53,7 +53,13 @@ function Home() {
     <div className="App">
       <h1 className="text-center mb-3">Characters</h1>
       <SearchBar setSearchTerm={setSearchTerm} setSelector={setSelector} selector={selector} />
-      {isSearching && <div style={{ textAlign: "center" }}>Searching ...</div>}
+      {isSearching && (
+        <div class="d-flex justify-content-center">
+          <div class="spinner-border text-warning text-center" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+        </div>
+      )}
       <div className="container">
         <div className="row">
           <FilterItems

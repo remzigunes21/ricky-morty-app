@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import "./style.scss";
 
 function CardItems({ results }) {
-  if (results) {
+  if (results&&results.length!==0) {
     return results
       .map((item) => {
         return (
