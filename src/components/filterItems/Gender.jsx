@@ -19,9 +19,7 @@ const Gender = ({ setGender }) => {
       <div id="collapseThree" className="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
         <div className="accordion-body d-flex flex-wrap gap-3">
           {genders.map((items, index) => {
-            return (
-              <FilterButton name="gender" index={index} key={index} task={setGender} input={items} />
-            );
+            return <FilterButton name="gender" index={index} key={index} task={setGender} input={items} />;
           })}
         </div>
       </div>

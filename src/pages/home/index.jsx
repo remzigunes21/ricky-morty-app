@@ -5,12 +5,13 @@ import { BASE_URL } from "../../utils";
 import { useDebounce } from "../../utils/hook";
 
 function Home() {
-  const [searchTerm, setSearchTerm] = useState("rick");
+  const [searchTerm, setSearchTerm] = useState("r");
   const [results, setResults] = useState([]);
   const [isSearching, setIsSearching] = useState(false);
   const [status, setStatus] = useState("");
   const [species, setSpecies] = useState("");
   const [gender, setGender] = useState("");
+  const [selector, setSelector] = useState(false);
 
   const debouncedSearchTerm = useDebounce(searchTerm, 500);
 
@@ -20,7 +21,7 @@ function Home() {
 
   useEffect(() => {
     fetchDebounceApi();
-  }, [debouncedSearchTerm]);
+  }, [debouncedSearchTerm, selector]);
 
   const fetchDebounceApi = () => {
     if (debouncedSearchTerm) {
@@ -36,7 +37,9 @@ function Home() {
   };
 
   const fetchCharactersData = (search = "") => {
-    const api = `${BASE_URL}/character?name=${search}&status=${status}&species=${species}&gender=${gender}`;
+    const api = `${BASE_URL}/character?name=${search}&status=${status}&species=${species}&gender=${gender}&sort=${
+      selector ? "id=desc" : "id=asc"
+    }`;
     return fetch(api)
       .then((r) => r.json())
       .then((res) => res.results)
@@ -49,8 +52,8 @@ function Home() {
   return (
     <div className="App">
       <h1 className="text-center mb-3">Characters</h1>
-      <SearchBar setSearchTerm={setSearchTerm} />
-      {isSearching && <div>Searching ...</div>}
+      <SearchBar setSearchTerm={setSearchTerm} setSelector={setSelector} selector={selector} />
+      {isSearching && <div style={{ textAlign: "center" }}>Searching ...</div>}
       <div className="container">
         <div className="row">
           <FilterItems
@@ -68,7 +71,6 @@ function Home() {
           </div>
         </div>
       </div>
-      paging
     </div>
   );
 }

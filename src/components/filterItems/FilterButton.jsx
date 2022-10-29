@@ -5,8 +5,8 @@ function FilterButton({ input, task, index, name }) {
     <div>
       <style jsx>
         {`
-          .x:checked + label {
-            background-color: #0b5ed7;
+          .full:checked + label {
+            background-color: #0b4cd7;
             color: white;
           }
           input[type="radio"] {
@@ -16,7 +16,7 @@ function FilterButton({ input, task, index, name }) {
       </style>
 
       <div className="form-check">
-        <input className="form-check-input x" type="radio" name={name} id={`${name}-${index}`} />
+        <input className="form-check-input full" type="radio" name={name} id={`${name}-${index}`} />
         <label
           onClick={(x) => {
             task(input);
