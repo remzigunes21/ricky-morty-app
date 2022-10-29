@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Navbars } from "./components";
+import CardItemDetail from "./components/cardItems/CardItemDetail";
 import { Episodes, Home, Location } from "./pages";
 
 function App() {
@@ -11,13 +12,11 @@ function App() {
       </div>
       <Routes>
         <Route path="/" element={<Home />} />
-        {/* <Route path="/:id" element={<CardDetails />} /> */}
 
         <Route path="/episodes" element={<Episodes />} />
-        {/* <Route path="/episodes/:id" element={<CardDetails />} /> */}
 
         <Route path="/location" element={<Location />} />
-        {/* <Route path="/location/:id" element={<CardDetails />} /> */}
+        <Route path="/:id" element={<CardItemDetail />} />
       </Routes>
     </Router>
   );
