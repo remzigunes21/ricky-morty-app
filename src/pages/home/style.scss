@@ -17,9 +17,14 @@
 
   @media screen and (max-width: 992px) {
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
   @media screen and (max-width: 768px) {
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
   }
 }
 
@@ -30,6 +35,16 @@
     flex-wrap: wrap;
     flex-direction: row;
     margin: auto;
+
+    @media screen and (max-width: 992px) {
+      justify-content: center;
+      align-items: center;
+    }
+    @media screen and (max-width: 768px) {
+      justify-content: center;
+      align-items: center;
+  
+    }
 
   }
 }

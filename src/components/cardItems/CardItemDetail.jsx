@@ -30,34 +30,34 @@ const CardItemDetail = () => {
   }
   return (
     <>
-      <div className="container d-flex justify-content-center mb-5">
-        <div className="d-flex flex-column gap-3">
+      <div className="detail-container">
+        <div className="wrapper">
           <h1 className="text-center">{detailData.name}</h1>
-          <div className={`card d-flex flex-column justify-content-center`}>
+          <div className={`detail-card card`}>
             <img className="img" src={detailData.image} alt="" />
             {status === "Dead" ? (
-              <div className="badge bg-danger fs-5">{detailData.status}</div>
+              <h2 className="bg-danger">{detailData.status}</h2>
             ) : status === "Alive" ? (
-              <div className=" badge bg-success fs-5">{detailData.status}</div>
+              <h2 className="bg-success">{detailData.status}</h2>
             ) : (
-              <div className="badge bg-secondary fs-5">{detailData.status}</div>
+              <h2 className="bg-secondary">{detailData.status}</h2>
             )}
 
             <div className="content">
-              <div className="">
-                <span className="fw-bold">Gender : </span>
+              <div>
+                <span>Gender : </span>
                 {detailData.gender}
               </div>
-              <div className="">
-                <span className="fw-bold">Location: </span>
+              <div>
+                <span>Location: </span>
                 {detailData.location?.name}
               </div>
-              <div className="">
-                <span className="fw-bold">Origin: </span>
+              <div>
+                <span>Origin: </span>
                 {detailData.origin?.name}
               </div>
-              <div className="">
-                <span className="fw-bold">Species: </span>
+              <div>
+                <span>Species: </span>
                 {detailData.species}
               </div>
             </div>
