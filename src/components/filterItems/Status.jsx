@@ -24,7 +24,7 @@ function Status({ setStatus }) {
         aria-labelledby="headingOne"
         data-bs-parent="#accordionExample"
       >
-        <div className="accordion-body d-flex flex-wrap gap-3">
+        <div className="accordion-body d-flex flex-wrap flex-column gap-3">
           {status.map((item, index) => (
             <FilterButton
               key={index}

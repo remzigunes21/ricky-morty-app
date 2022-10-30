@@ -50,7 +50,7 @@ function Home() {
   };
 
   return (
-    <div className="App">
+    <div>
       <h1 className="text-center mb-3">Characters</h1>
       <SearchBar setSearchTerm={setSearchTerm} setSelector={setSelector} selector={selector} />
       {isSearching && (

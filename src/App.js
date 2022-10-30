@@ -7,9 +7,7 @@ import { Home } from "./pages";
 function App() {
   return (
     <Router>
-      <div className="App">
         <Navbars />
-      </div>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/:id" element={<CardItemDetail />} />
