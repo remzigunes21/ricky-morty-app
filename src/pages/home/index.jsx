@@ -3,6 +3,7 @@ import { CardItems, FilterItems } from "../../components";
 import SearchBar from "../../components/searchBar";
 import { BASE_URL } from "../../utils";
 import { useDebounce } from "../../utils/hook";
+import "./style.scss"
 
 function Home() {
   const [searchTerm, setSearchTerm] = useState("r");
@@ -50,8 +51,8 @@ function Home() {
   };
 
   return (
-    <div>
-      <h1 className="text-center mb-3">Characters</h1>
+    <div className="home-container">
+      <h1>Characters</h1>
       <SearchBar setSearchTerm={setSearchTerm} setSelector={setSelector} selector={selector} />
       {isSearching && (
         <div class="d-flex justify-content-center">
@@ -60,8 +61,8 @@ function Home() {
           </div>
         </div>
       )}
-      <div className="container">
-        <div className="row">
+      <div className="container-wrapper">
+        <div className="r-row">
           <FilterItems
             status={status}
             setStatus={setStatus}
@@ -70,8 +71,8 @@ function Home() {
             gender={gender}
             species={species}
           />
-          <div className="col-lg-8 col-12">
-            <div className="row">
+          <div className="list-container">
+            <div className="list-row">
               <CardItems results={results} />
             </div>
           </div>

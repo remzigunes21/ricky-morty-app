@@ -4,16 +4,46 @@
 
 }
 
+.container-card{
+  position: relative;
+  margin-bottom: 4rem;
+  margin-left: 12px;
+  max-width: 100%;
+  width: 280px;
+
+  img{
+    height: 17s0px;
+    width: 100%;
+  }
+}
 
 $radius: 10px;
 
 .card {
   border: 1px solid #0b5ed7;
   border-radius: $radius;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+
 }
 
 .content {
   padding: 10px;
+
+  h3{
+    padding: 0;
+    margin: 0;
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin-bottom: 0.8rem;
+  }
+  p{
+    padding: 0;
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 700;
+  }
 }
 
 .img {
