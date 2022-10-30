@@ -17,3 +17,4 @@
 - The characters have detail pages.
 - Use REST API 
 - Debounce used for searchapi
+- Add .prettierrc 
